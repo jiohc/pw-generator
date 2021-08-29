@@ -13,30 +13,35 @@ var confirmLowercase;
 var confirmNumbers;
 var confirmSymbols;
   
-
+// function to generate password
 function generatePassword() {
     var confirmCharLength = "";
 
       window.alert("Enter criteria from the following selections.");
 
+      //criteria prompt for character length
     var confirmCharLength = prompt("How many characters would you like your password to be? (8-128 characters)");
   
+      //return function to beginning if invalid selection
   if (confirmCharLength < 8 || confirmCharLength > 128) {
       confirmCharLength = window.alert("Invalid selection. Please try again.") 
     return ""; 
   } 
 
+      //prompts for password criteria
     var confirmUppercase = window.confirm("Would you like to use uppercase letters?");
     var confirmLowercase = window.confirm("Would you like to use lowercase letters?");
     var confirmNumbers = window.confirm("Would you like to use numbers?");
     var confirmSymbols = window.confirm("Would you like to use symbols?");
   
-  
-  if (uppercase === false && lowercase === false && numbers === false && symbols === false) {
-      window.alert("You must select at least one character type!");
-
+    
+      //if no criteria is chosen, return to beginning
+  if (confirmUppercase === false && confirmLowercase === false && confirmNumbers === false && confirmSymbols === false) {
+      window.alert("You must select at least one character type! Please try again.");
+    return "";
   }
 
+      //password generation based off criteria selection
   var passwordChar = "";
   
   var randomizedPassword = "";
@@ -67,7 +72,7 @@ console.log("this is passwordChar", passwordChar);
   return randomizedPassword;
 
 }
-
+//helper function 
   function getRandom(pwList) {
     var randomSlot = Math.floor(Math.random() * pwList.length);
     return randomSlot;

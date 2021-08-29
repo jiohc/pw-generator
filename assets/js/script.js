@@ -1,19 +1,88 @@
-// Assignment code here
-
-
-
-
-// Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+// Assignment code here
 
-  passwordText.value = password;
+var lowercase = "abcdefghijklmnopqrstuvwxyz";
+var uppercase = lowercase.toUpperCase();
+var numbers = "0123456789";
+var symbols = "~!@#$%^&*()_-`=+[]{}|;':,./<>?";
+
+
+var confirmUppercase;
+var confirmLowercase;
+var confirmNumbers;
+var confirmSymbols;
+  
+
+function generatePassword() {
+    var confirmCharLength = "";
+
+      window.alert("Enter criteria from the following selections.");
+
+    var confirmCharLength = prompt("How many characters would you like your password to be? (8-128 characters)");
+  
+  if (confirmCharLength < 8 || confirmCharLength > 128) {
+      confirmCharLength = window.alert("Invalid selection. Please try again.") 
+    return ""; 
+  } 
+
+    var confirmUppercase = window.confirm("Would you like to use uppercase letters?");
+    var confirmLowercase = window.confirm("Would you like to use lowercase letters?");
+    var confirmNumbers = window.confirm("Would you like to use numbers?");
+    var confirmSymbols = window.confirm("Would you like to use symbols?");
+  
+  
+  if (uppercase === false && lowercase === false && numbers === false && symbols === false) {
+      window.alert("You must select at least one character type!");
+
+  }
+
+  var passwordChar = "";
+  
+  var randomizedPassword = "";
+
+  if (confirmUppercase) {
+    passwordChar += (uppercase)
+  }
+
+  if (confirmLowercase) {
+    passwordChar += (lowercase)
+  }
+
+  if (confirmNumbers) {
+    passwordChar += (numbers)
+  }
+
+  if (confirmSymbols) {
+    passwordChar += (symbols)
+  }
+
+
+console.log("this is passwordChar", passwordChar);
+
+  for (var i = 0; i < confirmCharLength; i++) {
+    randomizedPassword += passwordChar[getRandom(passwordChar)];
+  }
+
+  return randomizedPassword;
 
 }
 
+  function getRandom(pwList) {
+    var randomSlot = Math.floor(Math.random() * pwList.length);
+    return randomSlot;
+  }
+
+
+// Write password to the #password input
+  function writePassword() {
+
+    var password = generatePassword();
+
+    var passwordText = document.getElementById("password");
+    passwordText.value = password;
+  }
+
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
